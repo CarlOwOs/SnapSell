@@ -1,15 +1,23 @@
-# Marketplace App with Real-time Notifications
+# SnapSell: Marketplace App with Automated Agents
 
-This marketplace application includes a real-time notification system that can receive messages from third-party services and display them in a notifications screen.
+This repository combines a marketplace application with automated agents for handling sales interactions. It's the result of merging two repositories to create an integrated solution for online selling.
 
-## Features
+## Components
 
+### 1. Marketplace Application
 - Real-time notifications using Socket.IO
 - Webhook endpoint for third-party services to send notifications
 - Notification history and read status tracking
 - Alert notifications when the app is open
 
+### 2. Automated Agents
+- `agent-vc.py`: An automated agent for handling Facebook Messenger conversations for marketplace sales
+- `agent-mouse.py`: An automated agent for creating Facebook Marketplace listings with image uploads
+- `listener.py`: An S3 bucket listener that triggers the agent when new images are uploaded
+
 ## Setup and Installation
+
+### Marketplace App
 
 1. Install dependencies for both frontend and backend:
 
@@ -42,6 +50,39 @@ npm run dev
 
 ```bash
 npm start
+```
+
+### Automated Agents
+
+1. Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Create a `.env` file in the root directory with the following variables:
+
+```
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+AWS_REGION=your_aws_region
+S3_BUCKET_NAME=your_s3_bucket_name
+```
+
+3. Run the S3 listener to automatically process new images:
+
+```bash
+python listener.py
+```
+
+4. Or run the agents manually:
+
+```bash
+# For Facebook Messenger conversations
+python agent-vc.py
+
+# For creating Facebook Marketplace listings
+python agent-mouse.py
 ```
 
 ## Third-Party Integration
@@ -89,4 +130,16 @@ The application uses the following Socket.IO events:
 
 - `notifications` - Sent when a client connects, contains all notifications
 - `new_notification` - Sent when a new notification is received
-- `notification_read` - Sent when a notification is marked as read 
+- `notification_read` - Sent when a notification is marked as read
+
+## Dependencies
+
+This project uses the following key dependencies:
+- Amazon Bedrock for AI capabilities in the agents
+- browser-use (external library) for browser automation
+- Socket.IO for real-time notifications
+- AWS S3 for image storage and triggering automated listings
+
+## Note
+
+The `browser-use` directory contains an external repository that is used by the agents but is not part of this codebase. 
