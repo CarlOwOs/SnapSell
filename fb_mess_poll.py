@@ -6,9 +6,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 from plyer import notification
 
-# Facebook Credentials
-USERNAME = "giulia02.cor@gmail.com"
-PASSWORD = "Aisedra"
 
 # Set up Selenium
 options = webdriver.ChromeOptions()
