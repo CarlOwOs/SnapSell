@@ -145,7 +145,8 @@ This project uses the following key dependencies:
 The `browser-use` directory contains an external repository that is used by the agents but is not part of this codebase. 
 
 ## Contributors
-
+```
 Flavia Wallenhorst
 Carlos Hurtado
 Elvan Konukseven
+```
